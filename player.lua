@@ -19,6 +19,17 @@ function Player:update(dt)
     if love.keyboard.isDown("w") then
         self.y = self.y - (self.speed * dt)
     end
+
+    if self.y < 0 then
+        self.y = 0
+    elseif self.y > love.graphics.getHeight() then
+        self.y = love.graphics.getHeight()
+    end
+    if self.x < 0 then
+        self.x = 0
+    elseif self.x > love.graphics.getWidth() then
+        self.x = love.graphics.getWidth()
+    end
 end
 
 function Player:draw()
