@@ -17,5 +17,5 @@ function love.draw()
 end
 
 function love.mousepressed(x, y, button, isTouch)
-    bulletCreate(x, y, button)
+    Bullets:create(x, y, button)
 end

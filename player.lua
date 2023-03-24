@@ -7,6 +7,16 @@ function Player:load()
 end
 
 function Player:update(dt)
+    self:move(dt)
+    self:checkBoundaries()
+end
+
+function Player:draw()
+    love.graphics.setColor(0, 1, 0)
+    love.graphics.circle("fill", self.x, self.y, 20)
+end
+
+function Player:move(dt)
     if love.keyboard.isDown("d") then
         self.x = self.x + (self.speed * dt)
     end
@@ -19,8 +29,10 @@ function Player:update(dt)
     if love.keyboard.isDown("w") then
         self.y = self.y - (self.speed * dt)
     end
+end
 
-    if self.y < 0 then
+function Player:checkBoundaries()
+   if self.y < 0 then
         self.y = 0
     elseif self.y > love.graphics.getHeight() then
         self.y = love.graphics.getHeight()
@@ -29,10 +41,5 @@ function Player:update(dt)
         self.x = 0
     elseif self.x > love.graphics.getWidth() then
         self.x = love.graphics.getWidth()
-    end
-end
-
-function Player:draw()
-    love.graphics.setColor(0, 1, 0)
-    love.graphics.circle("fill", self.x, self.y, 20)
+    end 
 end

@@ -21,7 +21,7 @@ function Bullets:draw()
     end
 end
 
-function bulletCreate(x, y, button)
+function Bullets:create(x, y, button)
     local startX = Player.x
     local startY = Player.y
     local mouseX = x
