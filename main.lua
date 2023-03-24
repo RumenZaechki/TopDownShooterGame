@@ -1,25 +1,21 @@
+require("player")
+require("bullets")
+
 function love.load()
-    x = 100
-    y = 100
-    speed = 100
+    Player:load()
+    Bullets:load()
 end
 
 function love.update(dt)
-    if love.keyboard.isDown("d") then
-        x = x + (speed * dt)
-    end
-    if love.keyboard.isDown("a") then
-        x = x - (speed * dt)
-    end
-    if love.keyboard .isDown("s") then
-        y = y + (speed * dt)
-    end
-    if love.keyboard .isDown("w") then
-        y = y - (speed * dt)
-    end
+    Player:update(dt)
+    Bullets:update(dt)
 end
 
 function love.draw()
-    love.graphics.setColor(0, 1, 0)
-    love.graphics.circle("fill", x, y, 20)
+    Player:draw()
+    Bullets:draw()
+end
+
+function love.mousepressed(x, y, button, isTouch)
+    bulletCreate(x, y, button)
 end
