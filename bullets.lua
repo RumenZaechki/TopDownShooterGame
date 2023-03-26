@@ -10,7 +10,7 @@ function Bullets:update(dt)
     for i = 1, #Bullets do
         Bullets[i].x = Bullets[i].x + (Bullets[i].dx * dt)
         Bullets[i].y = Bullets[i].y + (Bullets[i].dy * dt)
-    end    
+    end
 end
 
 function Bullets:draw()
