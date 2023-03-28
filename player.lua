@@ -3,7 +3,8 @@ Player = {}
 function Player:load()
     self.x = 100
     self.y = 100
-    self.speed = 100
+    self.speed = 150
+    self.sprite = love.graphics.newImage('assets/player/player.png')
 end
 
 function Player:update(dt)
@@ -12,8 +13,7 @@ function Player:update(dt)
 end
 
 function Player:draw()
-    love.graphics.setColor(0, 1, 0)
-    love.graphics.circle("fill", self.x, self.y, 20)
+    love.graphics.draw(self.sprite, self.x, self.y)
 end
 
 function Player:move(dt)
@@ -32,7 +32,7 @@ function Player:move(dt)
 end
 
 function Player:checkBoundaries()
-   if self.y < 0 then
+    if self.y < 0 then
         self.y = 0
     elseif self.y > love.graphics.getHeight() then
         self.y = love.graphics.getHeight()
@@ -41,5 +41,5 @@ function Player:checkBoundaries()
         self.x = 0
     elseif self.x > love.graphics.getWidth() then
         self.x = love.graphics.getWidth()
-    end 
+    end
 end

@@ -1,11 +1,13 @@
 require("player")
 require("bullets")
 require("enemies")
+require("background")
 
 function love.load()
     Player:load()
     Bullets:load()
     Enemies:load(1)
+    Background:load()
 end
 
 function love.update(dt)
@@ -15,12 +17,8 @@ function love.update(dt)
 end
 
 function love.draw()
+    Background:draw()
     Player:draw()
     Bullets:draw()
     Enemies:draw()
-end
-
-function love.mousepressed(x, y, button)
-    Bullets:create(x, y, button)
-    Enemies:checkForCollision(x, y)
 end

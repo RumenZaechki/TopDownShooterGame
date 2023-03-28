@@ -3,34 +3,35 @@ require("player")
 Bullets = {}
 
 function Bullets:load()
+    Cooldown = 0
     BulletSpeed = 250
 end
 
 function Bullets:update(dt)
+    Cooldown = math.max(Cooldown - dt,0)
+    if love.keyboard.isDown("space") and Cooldown == 0 then
+        Cooldown = 0.25
+        Bullets:create(Player.x, Player.y)
+    end
     for i = 1, #Bullets do
-        Bullets[i].x = Bullets[i].x + (Bullets[i].dx * dt)
-        Bullets[i].y = Bullets[i].y + (Bullets[i].dy * dt)
+        Bullets[i].y = Bullets[i].y - (BulletSpeed * dt)
     end
 end
 
 function Bullets:draw()
     for i = 1, #Bullets do
-        love.graphics.setColor(1, 0, 0)
-        love.graphics.circle("fill", Bullets[i].x, Bullets[i].y, 5)
-        love.graphics.setColor(1, 1, 1)
+        love.graphics.draw(Bullets[i].sprite, Bullets[i].x, Bullets[i].y)
     end
 end
 
-function Bullets:create(x, y, button)
+function Bullets:create(x, y)
     local startX = Player.x
     local startY = Player.y
-    local mouseX = x
-    local mouseY = y
 
-    local angle = math.atan2((mouseY - startY), (mouseX - startX))
-
-    local bulletDx = BulletSpeed * math.cos(angle)
-    local bulletDy = BulletSpeed * math.sin(angle)
-
-    table.insert(Bullets, { x = startX, y = startY, dx = bulletDx, dy = bulletDy })
+    table.insert(Bullets,
+        {
+            x = startX,
+            y = startY,
+            sprite = love.graphics.newImage('assets/bullets/laserRed.png')
+        })
 end
