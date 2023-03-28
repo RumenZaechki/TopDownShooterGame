@@ -1,8 +1,8 @@
 Player = {}
 
 function Player:load()
-    self.x = 100
-    self.y = 100
+    self.x = love.graphics.getWidth() / 2
+    self.y = love.graphics.getHeight() - 100
     self.speed = 150
     self.sprite = love.graphics.newImage('assets/player/player.png')
 end

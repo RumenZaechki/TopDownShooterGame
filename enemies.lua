@@ -3,7 +3,7 @@ Enemies = {}
 function Enemies:load(n)
     for i = 1, n do
         enemyX = math.random(600)
-        enemyY = math.random(600)
+        enemyY = 0
         enemySpeed = 40
         table.insert(Enemies,
             {
@@ -18,17 +18,7 @@ end
 function Enemies:update(dt, playerX, playerY)
     for i = 1, #Enemies do
         currentEnemy = Enemies[i]
-        if playerX - currentEnemy.x > 0 then
-            currentEnemy.x = currentEnemy.x + (currentEnemy.speed * dt)
-        elseif playerX - currentEnemy.x < 0 then
-            currentEnemy.x = currentEnemy.x - (currentEnemy.speed * dt)
-        end
-
-        if playerY - currentEnemy.y > 0 then
-            currentEnemy.y = currentEnemy.y + (currentEnemy.speed * dt)
-        elseif playerY - currentEnemy.y < 0 then
-            currentEnemy.y = currentEnemy.y - (currentEnemy.speed * dt)
-        end
+        currentEnemy.y = currentEnemy.y + (currentEnemy.speed * dt)
     end
 end
 
@@ -40,7 +30,14 @@ function Enemies:draw()
 end
 
 function chooseRandomPNG()
+    math.randomseed(os.time())
     n = math.random(1, 4)
-    assetsPathsArray = {'assets/enemies/enemyShip.png', 'assets/enemies/enemyUFO.png', 'assets/enemies/meteorBig.png', 'assets/enemies/meteorSmall.png'}
-    return  assetsPathsArray[n]
+    assetsPathsArray =
+    {
+        'assets/enemies/enemyShip.png',
+        'assets/enemies/meteorBig.png',
+        'assets/enemies/enemyUFO.png',
+        'assets/enemies/meteorSmall.png',
+    }
+    return assetsPathsArray[n]
 end
