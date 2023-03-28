@@ -25,7 +25,10 @@ function Bullets:draw()
 end
 
 function Bullets:create()
-    local startX = Player.x
+    --This was the only way I knew to make the bullet spawn from the center of the player's position.
+    --If anyone is watching this and knows how to do it in a better way, please do tell me,
+    --because I spent more time than I dare admit on this.
+    local startX = Player.x + 47
     local startY = Player.y
 
     table.insert(Bullets,
