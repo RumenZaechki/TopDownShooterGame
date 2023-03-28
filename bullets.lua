@@ -11,7 +11,7 @@ function Bullets:update(dt)
     Cooldown = math.max(Cooldown - dt,0)
     if love.keyboard.isDown("space") and Cooldown == 0 then
         Cooldown = 0.25
-        Bullets:create(Player.x, Player.y)
+        Bullets:create()
     end
     for i = 1, #Bullets do
         Bullets[i].y = Bullets[i].y - (BulletSpeed * dt)
@@ -24,7 +24,7 @@ function Bullets:draw()
     end
 end
 
-function Bullets:create(x, y)
+function Bullets:create()
     local startX = Player.x
     local startY = Player.y
 
