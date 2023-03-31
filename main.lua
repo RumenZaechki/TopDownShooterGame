@@ -6,14 +6,14 @@ require("background")
 function love.load()
     Player:load()
     Bullets:load()
-    Enemies:load(1)
+    Enemies:load()
     Background:load()
 end
 
 function love.update(dt)
     Player:update(dt)
     Bullets:update(dt)
-    Enemies:update(dt, Player.x, Player.y)
+    Enemies:update(dt)
 end
 
 function love.draw()

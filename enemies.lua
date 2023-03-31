@@ -1,24 +1,22 @@
+createEnemyTimerMax = 0.4
+createEnemyTimer = createEnemyTimerMax
+
 Enemies = {}
 
-function Enemies:load(n)
-    for i = 1, n do
-        enemyX = math.random(600)
-        enemyY = 0
-        enemySpeed = 40
-        table.insert(Enemies,
-            {
-                x = enemyX,
-                y = enemyY,
-                speed = enemySpeed,
-                sprite = love.graphics.newImage(chooseRandomPNG())
-            })
-    end
+function Enemies:load()
+    
 end
 
-function Enemies:update(dt, playerX, playerY)
-    for i = 1, #Enemies do
-        currentEnemy = Enemies[i]
-        currentEnemy.y = currentEnemy.y + (currentEnemy.speed * dt)
+function Enemies:update(dt)
+    createEnemy(dt)
+
+    for i, enemy in ipairs(Enemies) do
+        enemy.y = enemy.y + (enemy.speed * dt)
+        
+        --remove enemy if out of borders
+        if enemy.y > love.graphics.getHeight() then
+            table.remove(Enemies, i)
+        end
     end
 end
 
@@ -26,6 +24,26 @@ function Enemies:draw()
     for i = 1, #Enemies do
         currentEnemy = Enemies[i]
         love.graphics.draw(currentEnemy.sprite, currentEnemy.x, currentEnemy.y)
+    end
+end
+
+function createEnemy(dt)
+    --time out enemy creation
+    createEnemyTimer = createEnemyTimer - (1 * dt)
+    if createEnemyTimer < 0 then
+        createEnemyTimer = createEnemyTimerMax
+
+        --create enemy
+        enemyX = math.random(600)
+        enemyY = 0
+        enemySpeed = 40
+        table.insert(Enemies,
+        {
+            x = enemyX,
+            y = enemyY,
+            speed = enemySpeed,
+            sprite = love.graphics.newImage(chooseRandomPNG())
+        })
     end
 end
 

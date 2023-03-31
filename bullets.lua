@@ -13,8 +13,13 @@ function Bullets:update(dt)
         Cooldown = 0.25
         Bullets:create()
     end
-    for i = 1, #Bullets do
+    for i, bullet in ipairs(Bullets) do
         Bullets[i].y = Bullets[i].y - (BulletSpeed * dt)
+
+        --remove bullet if out of borders
+        if Bullets[i].y < 0 then
+            table.remove( Bullets, i)
+        end
     end
 end
 
