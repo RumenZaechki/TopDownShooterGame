@@ -1,3 +1,7 @@
+require("bullets")
+require("enemies")
+require("collision")
+
 Player = {}
 
 function Player:load()
@@ -8,15 +12,21 @@ function Player:load()
     self.spriteLeft = love.graphics.newImage('assets/player/playerLeft.png')
     self.spriteRight = love.graphics.newImage('assets/player/playerRight.png')
     self.sprite = self.spriteIdle
+    self.isAlive = true
 end
 
 function Player:update(dt)
     self:move(dt)
     self:checkBoundaries()
+    self:checkForCollision()
 end
 
 function Player:draw()
-    love.graphics.draw(self.sprite, self.x, self.y)
+    if self.isAlive then
+        love.graphics.draw(self.sprite, self.x, self.y)
+    else
+        self:restart()
+    end
 end
 
 function Player:move(dt)
@@ -52,5 +62,29 @@ function Player:checkBoundaries()
         self.x = 0
     elseif self.x > love.graphics.getWidth() then
         self.x = love.graphics.getWidth()
+    end
+end
+
+function Player:checkForCollision()
+    for i, enemy in ipairs(Enemies) do
+        if CheckCollision(enemy.x, enemy.y, enemy.sprite:getWidth(), enemy.sprite:getHeight(), self.x, self.y, self.sprite:getWidth(), self.sprite:getHeight()) 
+            and self.isAlive then
+                table.remove(Enemies, i)
+                self.isAlive = false
+        end
+    end
+end
+
+function Player:restart()
+    if self.isAlive == false then
+        love.graphics.print("Press 'R' to restart", love.graphics:getWidth()/2-50, love.graphics:getHeight()/2-10)
+        if love.keyboard.isDown('r') then    
+            -- move player back to default position
+            self.x = love.graphics.getWidth() / 2
+            self.y = love.graphics.getHeight() - 100
+        
+            -- reset game state
+            self.isAlive = true
+        end
     end
 end

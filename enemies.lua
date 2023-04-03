@@ -1,3 +1,6 @@
+require("bullets")
+require("collision")
+
 createEnemyTimerMax = 0.4
 createEnemyTimer = createEnemyTimerMax
 
@@ -18,6 +21,8 @@ function Enemies:update(dt)
             table.remove(Enemies, i)
         end
     end
+
+    checkIfObjectsCollide()
 end
 
 function Enemies:draw()
@@ -58,4 +63,15 @@ function chooseRandomPNG()
         'assets/enemies/meteorSmall.png',
     }
     return assetsPathsArray[n]
+end
+
+function checkIfObjectsCollide()
+    for i, enemy in ipairs(Enemies) do
+        for j, bullet in ipairs(Bullets) do
+            if CheckCollision(enemy.x, enemy.y, enemy.sprite:getWidth(), enemy.sprite:getHeight(), bullet.x, bullet.y, bullet.sprite:getWidth(), bullet.sprite:getHeight()) then
+                table.remove(Bullets, j)
+                table.remove(Enemies, i)
+            end
+        end
+    end
 end
