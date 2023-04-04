@@ -1,6 +1,7 @@
 require("bullets")
 require("enemies")
 require("collision")
+require("sounds")
 
 Player = {}
 
@@ -77,6 +78,8 @@ end
 
 function Player:restart()
     if self.isAlive == false then
+        Sounds.dead:play()
+
         love.graphics.print("Press 'R' to restart", love.graphics:getWidth()/2-50, love.graphics:getHeight()/2-10)
         if love.keyboard.isDown('r') then    
             -- move player back to default position

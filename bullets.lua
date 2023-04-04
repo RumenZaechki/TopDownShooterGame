@@ -1,4 +1,4 @@
--- require("player")
+require("sounds")
 
 Bullets = {}
 
@@ -11,9 +11,11 @@ function Bullets:update(dt)
     Cooldown = math.max(Cooldown - dt,0)
     if love.keyboard.isDown("space") and Cooldown == 0 then
         Cooldown = 0.25
-        Bullets:create()
+        createBullet()
+        Sounds.blip:play()
     end
-    for i, bullet in ipairs(Bullets) do
+    
+    for i, bullet in ipairs(Bullets) do 
         Bullets[i].y = Bullets[i].y - (BulletSpeed * dt)
 
         --remove bullet if out of borders
@@ -29,7 +31,7 @@ function Bullets:draw()
     end
 end
 
-function Bullets:create()
+function createBullet()
     --This was the only way I knew to make the bullet spawn from the center of the player's position.
     --If anyone is watching this and knows how to do it in a better way, please do tell me,
     --because I spent more time than I dare admit on this.

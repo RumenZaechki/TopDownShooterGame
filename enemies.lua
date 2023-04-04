@@ -6,9 +6,9 @@ createEnemyTimer = createEnemyTimerMax
 
 Enemies = {}
 
-function Enemies:load()
+-- function Enemies:load()
     
-end
+-- end
 
 function Enemies:update(dt)
     createEnemy(dt)
