@@ -21,22 +21,22 @@ local how_to_play_keypressed
 local game_keypressed
 
 function Menu:load()
-  -- get the width and height of the game window in order to center menu items
-  window_width, window_height = love.graphics.getDimensions()
+  loadMenu()
 
-  -- use a big font for the menu
-  local font = love.graphics.setNewFont(30)
-
-  -- get the height of the font to help calculate vertical positions of menu items
-  font_height = font:getHeight()
+  Player:load()
+  Bullets:load()
+  Background:load()
+  Sounds:load()
 end
 
 function Menu:update(dt)
   if game_state == 'game' then
     -- update everything in the game
     Player:update(dt)
-    Bullets:update(dt)
-    Enemies:update(dt)
+    if Player.isAlive then -- this is here in order to stop bullet/enemy creation/update after player is dead
+      Bullets:update(dt)
+      Enemies:update(dt)
+    end
     Sounds:update(dt)
   end
 end
@@ -57,6 +57,17 @@ function Menu:draw()
   end
 end
 
+function loadMenu()
+  -- get the width and height of the game window in order to center menu items
+  window_width, window_height = love.graphics.getDimensions()
+
+  -- use a big font for the menu
+  local font = love.graphics.setNewFont(30)
+
+  -- get the height of the font to help calculate vertical positions of menu items
+  font_height = font:getHeight()
+end
+
 function draw_menu()
 
   local horizontal_center = window_width / 2
@@ -70,7 +81,7 @@ function draw_menu()
 
   -- draw game title
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Breakout", 0, 150, window_width, 'center')
+  love.graphics.printf("Top Down Shooter Game", 0, 150, window_width, 'center')
 
   -- draw menu items
   for i = 1, #menus do
@@ -94,7 +105,7 @@ end
 function draw_how_to_play()
 
   love.graphics.printf(
-    "W - up \n S - down \n A - left \n D - right \n M - mute music \n press Esc to go back to the 'menu' state",
+    "W - up \n S - down \n A - left \n D - right \n M - mute music \n press Esc to go back to the menu",
     0,
     window_height / 2 - font_height / 2,
     window_width,

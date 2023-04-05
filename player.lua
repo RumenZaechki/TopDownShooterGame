@@ -1,4 +1,3 @@
-require("bullets")
 require("enemies")
 require("collision")
 require("sounds")
@@ -14,17 +13,18 @@ function Player:load()
     self.spriteRight = love.graphics.newImage('assets/player/playerRight.png')
     self.sprite = self.spriteIdle
     self.isAlive = true
-    self.isPaused = false --this is for when the player dies, so that the other objects stop updating
 end
 
 function Player:update(dt)
-    self:move(dt)
-    self:checkBoundaries()
-    self:checkForCollision()
+    if self.isAlive == true then
+        self:move(dt)
+        self:checkBoundaries()
+        self:checkForCollision()
+    end
 end
 
 function Player:draw()
-    if self.isAlive then
+    if self.isAlive == true then
         love.graphics.draw(self.sprite, self.x, self.y)
     else
         self:restart()
@@ -73,16 +73,15 @@ function Player:checkForCollision()
             and self.isAlive then
                 table.remove(Enemies, i)
                 self.isAlive = false
+                Sounds.dead:play()
         end
     end
 end
 
 function Player:restart()
     if self.isAlive == false then
-        self.isPaused = true
-        Sounds.dead:play()
-        
-        love.graphics.print("Press 'R' to restart", love.graphics:getWidth()/2-50, love.graphics:getHeight()/2-10)
+        love.event.clear()
+        love.graphics.print("Press 'R' to restart", love.graphics:getWidth()/2-120, love.graphics:getHeight()/2-10)
         if love.keyboard.isDown('r') then    
             love.event.quit('restart')
         end
