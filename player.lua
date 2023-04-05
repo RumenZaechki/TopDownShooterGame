@@ -14,6 +14,7 @@ function Player:load()
     self.spriteRight = love.graphics.newImage('assets/player/playerRight.png')
     self.sprite = self.spriteIdle
     self.isAlive = true
+    self.isPaused = false --this is for when the player dies, so that the other objects stop updating
 end
 
 function Player:update(dt)
@@ -78,16 +79,12 @@ end
 
 function Player:restart()
     if self.isAlive == false then
+        self.isPaused = true
         Sounds.dead:play()
-
+        
         love.graphics.print("Press 'R' to restart", love.graphics:getWidth()/2-50, love.graphics:getHeight()/2-10)
         if love.keyboard.isDown('r') then    
-            -- move player back to default position
-            self.x = love.graphics.getWidth() / 2
-            self.y = love.graphics.getHeight() - 100
-        
-            -- reset game state
-            self.isAlive = true
+            love.event.quit('restart')
         end
     end
 end

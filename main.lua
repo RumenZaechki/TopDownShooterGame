@@ -14,6 +14,9 @@ function love.load()
 end
 
 function love.update(dt)
+    if Player.isPaused then
+        return
+    end
     Menu:update(dt)
 end
 
