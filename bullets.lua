@@ -2,15 +2,17 @@ require("sounds")
 
 Bullets = {}
 
+local cooldown
+
 function Bullets:load()
-    Cooldown = 0
+    cooldown = 0
     BulletSpeed = 250
 end
 
 function Bullets:update(dt)
-    Cooldown = math.max(Cooldown - dt,0)
-    if love.keyboard.isDown("space") and Cooldown == 0 then
-        Cooldown = 0.25
+    cooldown = math.max(cooldown - dt,0)
+    if love.keyboard.isDown("space") and cooldown == 0 then
+        cooldown = 0.25
         createBullet()
         Sounds.blip:play()
     end

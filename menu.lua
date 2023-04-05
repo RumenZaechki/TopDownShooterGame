@@ -37,7 +37,7 @@ function Menu:update(dt)
     Player:update(dt)
     Bullets:update(dt)
     Enemies:update(dt)
-    Sounds:update()
+    Sounds:update(dt)
   end
 end
 
