@@ -3,25 +3,20 @@ require("bullets")
 require("enemies")
 require("background")
 require("sounds")
+require("menu")
 
 function love.load()
+    Menu.load()
     Player:load()
     Bullets:load()
-    -- Enemies:load()
     Background:load()
     Sounds:load()
 end
 
 function love.update(dt)
-    Player:update(dt)
-    Bullets:update(dt)
-    Enemies:update(dt)
-    Sounds:update()
+    Menu:update(dt)
 end
 
 function love.draw()
-    Background:draw()
-    Player:draw()
-    Bullets:draw()
-    Enemies:draw()
+    Menu:draw()
 end

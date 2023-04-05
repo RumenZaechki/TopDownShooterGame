@@ -1,14 +1,10 @@
 require("bullets")
 require("collision")
 
-createEnemyTimerMax = 0.4
-createEnemyTimer = createEnemyTimerMax
+local createEnemyTimerMax = 0.4
+local createEnemyTimer = createEnemyTimerMax
 
 Enemies = {}
-
--- function Enemies:load()
-    
--- end
 
 function Enemies:update(dt)
     createEnemy(dt)
