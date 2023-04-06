@@ -1,21 +1,19 @@
 Background = {}
 
+--functions
+local get_scaling
+
 function Background:load()
-    self.sprite = love.graphics.newImage('assets/background/starBackground.png')
+    self.sprite = love.graphics.newImage("assets/background/starBackground.png")
 end
-
--- function Background:update()
-
--- end
 
 function Background:draw()
     Canvas = love.graphics.newCanvas(love.graphics.getWidth(), love.graphics.getHeight())
-    imageScaleX, imageScaleY = getScaling(self.sprite, canvas)
+    imageScaleX, imageScaleY = get_scaling(self.sprite, canvas)
     love.graphics.draw(self.sprite, 0, 0, 0, imageScaleX, imageScaleY)
 end
 
-
-function getScaling(drawable, canvas)
+function get_scaling(drawable, canvas)
     local canvas = canvas or nil
 
     local drawW = drawable:getWidth()

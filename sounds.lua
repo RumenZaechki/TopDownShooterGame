@@ -1,6 +1,6 @@
 Sounds = {}
 
-local cooldown -- used the same logic here as in bullets, because otherwise the mute executes so fast you don't even notice it
+local cooldown  -- used the same logic here as in bullets, because otherwise the mute executes so fast you don't even notice it
 
 function Sounds:load()
     cooldown = 0
@@ -11,7 +11,7 @@ function Sounds:load()
 end
 
 function Sounds:update(dt)
-    cooldown = math.max(cooldown - dt,0)
+    cooldown = math.max(cooldown - dt, 0)
     if love.keyboard.isDown("m") and cooldown == 0 then
         cooldown = 0.25
         if self.isMuted == false then
