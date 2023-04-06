@@ -57,13 +57,13 @@ end
 function Player:checkBoundaries()
     if self.y < 0 then
         self.y = 0
-    elseif self.y > love.graphics.getHeight() then
-        self.y = love.graphics.getHeight()
+    elseif self.y > (love.graphics.getHeight() - self.sprite:getHeight()) then
+        self.y = love.graphics.getHeight() - self.sprite:getHeight()
     end
     if self.x < 0 then
         self.x = 0
-    elseif self.x > love.graphics.getWidth() then
-        self.x = love.graphics.getWidth()
+    elseif self.x > (love.graphics.getWidth() - self.sprite:getWidth()) then
+        self.x = love.graphics.getWidth() - self.sprite:getWidth()
     end
 end
 
