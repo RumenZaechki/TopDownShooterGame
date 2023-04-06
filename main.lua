@@ -1,8 +1,3 @@
-require("player")
-require("bullets")
-require("enemies")
-require("background")
-require("sounds")
 require("menu")
 
 function love.load()

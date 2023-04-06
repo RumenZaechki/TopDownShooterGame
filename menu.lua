@@ -2,6 +2,7 @@ require("player")
 require("bullets")
 require("enemies")
 require("sounds")
+require("background")
 
 Menu = {}
 
