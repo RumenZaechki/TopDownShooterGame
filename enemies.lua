@@ -40,7 +40,7 @@ function create_enemy(dt)
         createEnemyTimer = createEnemyTimerMax
 
         --create enemy
-        enemyX = math.random(600)
+        enemyX = math.random(love.graphics.getWidth())
         enemyY = 0
         enemySpeed = 40
         table.insert(

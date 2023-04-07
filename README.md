@@ -12,7 +12,9 @@ You're basically controlling a spaceship, trying to destroy the other enemy spac
 - M: Mute music.
 
 ### Content:
-- [assets](/assets): Contains all the images and sounds used in the game.
+- [assets](/assets): Contains all the images and sounds used in the game. 
+    All the PNGs used are from [opengameart.org](https://opengameart.org/content/space-shooter-art)
+    The background music is Street Fighter 2 Guile's Theme 
 - [background.lua](/background.lua): Contains the logic for loading, and scaling the bakground.
 - [bullets.lua](/bullets.lua): Contains the logic for the bullets implementation: creation, removal, cooldown.
 - [collision.lua](/collision.lua): Contains a single method for checking whether two objects collide.

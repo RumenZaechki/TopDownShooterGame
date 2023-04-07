@@ -22,6 +22,7 @@ local how_to_play_keypressed
 local game_keypressed
 
 function Menu:load()
+  success = love.window.setFullscreen( true )
   loadMenu()
 
   Player:load()
