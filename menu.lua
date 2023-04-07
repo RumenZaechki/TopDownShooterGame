@@ -99,7 +99,7 @@ end
 
 function draw_how_to_play()
   love.graphics.printf(
-    "W - up \n S - down \n A - left \n D - right \n M - mute music \n press Esc to go back to the menu",
+    "W - up \n S - down \n A - left \n D - right \n space - fire \n M - mute music \n press Esc to go back to the menu",
     0,
     window_height / 2 - font_height / 2,
     window_width,
