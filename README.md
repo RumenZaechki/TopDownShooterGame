@@ -1,10 +1,13 @@
-# [CS50x(2020) Final Project:](https://cs50.harvard.edu/x/2023/project/) TopDownShooterGame
+# [CS50x(2023) Final Project:](https://cs50.harvard.edu/x/2023/project/) TopDownShooterGame
 
 ## Description:
 
 As the title suggests, this is a Top-Down Shooter Game, inspired by Space Invaders. It was made using Lua with [Löve2D](https://love2d.org/) framework.
 
 You're basically controlling a spaceship, trying to destroy the other enemy spaceships or meteors.
+
+All the PNGs used are from [opengameart.org](https://opengameart.org/content/space-shooter-art)
+The background music is Street Fighter 2 Guile's Theme 
 
 ### Control keys:
 - W, A, S, D: Move.
@@ -13,8 +16,6 @@ You're basically controlling a spaceship, trying to destroy the other enemy spac
 
 ### Content:
 - [assets](/assets): Contains all the images and sounds used in the game. 
-    All the PNGs used are from [opengameart.org](https://opengameart.org/content/space-shooter-art)
-    The background music is Street Fighter 2 Guile's Theme 
 - [background.lua](/background.lua): Contains the logic for loading, and scaling the bakground.
 - [bullets.lua](/bullets.lua): Contains the logic for the bullets implementation: creation, removal, cooldown.
 - [collision.lua](/collision.lua): Contains a single method for checking whether two objects collide.
